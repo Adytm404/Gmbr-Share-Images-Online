@@ -68,7 +68,7 @@ const App: React.FC = () => {
 
   const handleFileSelect = useCallback(async (selectedFile: File) => {
     if (!selectedFile.type.startsWith('image/')) {
-      setError('Silakan unggah file gambar yang valid.');
+      setError('Please upload a valid image file.');
       return;
     }
 

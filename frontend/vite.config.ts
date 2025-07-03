@@ -7,6 +7,9 @@ export default defineConfig(({ mode }) => {
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
+      },server: {
+        host: '0.0.0.0',
+        allowedHosts: ['gmbr.web.id']
       },
       resolve: {
         alias: {
