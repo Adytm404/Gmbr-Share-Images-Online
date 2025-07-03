@@ -1,0 +1,6 @@
+{
+  "name": "Image Sharer",
+  "description": "Alat online untuk mengunggah dan membagikan gambar melalui tautan unik. Aplikasi ini mereplikasi UI Jumpshare untuk berbagi gambar sederhana.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gmbr - Share Images Online</title>
+    <meta name="description" content="Gmbr adalah platform sederhana dan cepat untuk membagikan gambar secara online. Upload, bagikan, dan tampilkan gambar dengan mudah dan gratis." />
+    <meta name="keywords" content="gmbr, upload gambar, share image, image hosting, nyandrive, gmbr web id, image uploader, image link generator" />
+    <meta name="author" content="Gmbr by NyanHosting" />
+
+    <!-- Open Graph (Facebook, LinkedIn, dll) -->
+    <meta property="og:title" content="Gmbr - Share Images Online" />
+    <meta property="og:description" content="Upload dan bagikan gambar Anda dengan mudah melalui Gmbr, platform image sharing cepat dan gratis." />
+    <meta property="og:image" content="https://ik.imagekit.io/bly37h3bc/nyan_1751587502414_OObyVxBwh.jpg" />
+    <meta property="og:url" content="https://gmbr.web.id" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Gmbr - Share Images Online" />
+    <meta name="twitter:description" content="Upload dan bagikan gambar Anda dengan mudah melalui Gmbr, platform image sharing cepat dan gratis." />
+    <meta name="twitter:image" content="https://ik.imagekit.io/bly37h3bc/nyan_1751587502414_OObyVxBwh.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%232563eb' viewBox='0 0 512 512'%3E%3Cpath d='M464 448H48c-8.8 0-16-7.2-16-16V80c0-8.8 7.2-16 16-16h416c8.8 0 16 7.2 16 16v352c0 8.8-7.2 16-16 16zM48 32C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48H48zM144 224a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm73.4 80L384 384H128l89.4-80z'/%3E%3C/svg%3E" />
+
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react": "https://esm.sh/react@^19.1.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.8.0"
+  }
+}
+</script>
+<script>
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  </script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-white">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
