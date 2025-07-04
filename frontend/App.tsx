@@ -7,6 +7,7 @@ import ImageViewer from './components/ImageViewer';
 import Footer from './components/Footer';
 import LegalPage from './components/LegalPage';
 import { uploadImage } from './services/imageService';
+import AnimatedBackground from './components/AnimatedBackground';
 
 const App: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -134,32 +135,35 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-white dark:bg-slate-900 font-sans text-slate-800 dark:text-slate-300">
-      <Header theme={theme} toggleTheme={toggleTheme} />
-      <main className="container mx-auto px-4 pt-28 pb-12 sm:pt-32 sm:pb-16 md:pt-40 md:pb-24 flex flex-col items-center flex-grow">
-        {!file || !filePreview ? (
-          <>
-            <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white text-center">Share Images Online</h1>
-            <p className="mt-4 text-lg text-slate-600 dark:text-slate-400 text-center">Instantly share your images with a link</p>
-            <FileUploader onFileSelect={handleFileSelect} isLoading={isLoading} />
-            <p className="mt-8 text-sm text-slate-500 dark:text-slate-400">
-              Maximum file size: 100MB
-            </p>
-            <p className="mt-12 text-xs text-slate-400 dark:text-slate-500 text-center max-w-md">
-              By using this service, you agree to our <a href="/legal-agreement" className="underline hover:text-slate-600 dark:hover:text-slate-300">Terms &amp; Privacy Policy</a>.
-            </p>
-             {error && <p className="mt-4 text-sm text-red-500">{error}</p>}
-          </>
-        ) : (
-          <UploadedFileView
-            file={file}
-            filePreview={filePreview}
-            shareUrl={shareUrl}
-            onReset={handleResetAndGoHome}
-          />
-        )}
-      </main>
-      <Footer />
+    <div className="min-h-screen font-sans text-slate-800 dark:text-slate-300">
+      <AnimatedBackground />
+      <div className="relative z-[1] flex flex-col min-h-screen">
+        <Header theme={theme} toggleTheme={toggleTheme} />
+        <main className="container mx-auto px-4 pt-28 pb-12 sm:pt-32 sm:pb-16 md:pt-40 md:pb-24 flex flex-col items-center flex-grow">
+          {!file || !filePreview ? (
+            <>
+              <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white text-center">Share Images Online</h1>
+              <p className="mt-4 text-lg text-slate-600 dark:text-slate-400 text-center">Instantly share your images with a link</p>
+              <FileUploader onFileSelect={handleFileSelect} isLoading={isLoading} />
+              <p className="mt-8 text-sm text-slate-500 dark:text-slate-400">
+                Maximum file size: 100MB
+              </p>
+              <p className="mt-12 text-xs text-slate-400 dark:text-slate-500 text-center max-w-md">
+                By using this service, you agree to our <a href="/legal-agreement" className="underline hover:text-slate-600 dark:hover:text-slate-300">Terms &amp; Privacy Policy</a>.
+              </p>
+              {error && <p className="mt-4 text-sm text-red-500">{error}</p>}
+            </>
+          ) : (
+            <UploadedFileView
+              file={file}
+              filePreview={filePreview}
+              shareUrl={shareUrl}
+              onReset={handleResetAndGoHome}
+            />
+          )}
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 };
