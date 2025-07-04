@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tambahan custom CSS jika diperlukan */
+body {
+  @apply bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-200;
+}
