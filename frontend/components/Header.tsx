@@ -24,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
           
           <div className="flex items-center space-x-2 sm:space-x-4">
             <a 
-              href="https://github.com/google/labs-prototyping-frontend-projects" 
+              href="https://github.com/Adytm404/Gmbr-Share-Images-Online/" 
               target="_blank" 
               rel="noopener noreferrer" 
               aria-label="GitHub Repository" 
