@@ -1,5 +1,6 @@
 
 import React from 'react';
+import Footer from './Footer';
 
 interface ImageViewerProps {
   imageId: string;
@@ -9,7 +10,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ imageId }) => {
   const imageUrl = `https://api.gmbr.web.id/image/${imageId}`;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-slate-100 dark:bg-slate-900 p-4 font-sans">
+    <div className="flex flex-col min-h-screen bg-slate-100 dark:bg-slate-900 p-4 font-sans">
       <div className="fixed top-4 left-4">
          <a href="/" className="flex items-center space-x-2 text-slate-800 dark:text-white opacity-80 hover:opacity-100 transition-opacity">
              <i className="fa-solid fa-image text-blue-600 text-2xl" aria-hidden="true"></i>
@@ -29,6 +30,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ imageId }) => {
             Upload Your Own Image
         </a>
       </main>
+      <Footer />
     </div>
   );
 };

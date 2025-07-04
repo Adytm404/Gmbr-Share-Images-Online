@@ -4,6 +4,8 @@ import Header from './components/Header';
 import FileUploader from './components/FileUploader';
 import UploadedFileView from './components/UploadedFileView';
 import ImageViewer from './components/ImageViewer';
+import Footer from './components/Footer';
+import LegalPage from './components/LegalPage';
 import { uploadImage } from './services/imageService';
 
 const App: React.FC = () => {
@@ -13,11 +15,11 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const [view, setView] = useState<'upload' | 'image'>('upload');
+  const [view, setView] = useState<'upload' | 'image' | 'legal'>('upload');
   const [imageId, setImageId] = useState<string | null>(null);
 
   const [theme, setTheme] = useState(() => {
-    // Periksa tema di localStorage atau berdasarkan preferensi sistem, cocokkan dengan skrip inline.
+    // Check for theme in localStorage or based on system preference, matching the inline script.
     if (typeof window !== 'undefined' && window.localStorage) {
       const storedTheme = window.localStorage.getItem('theme');
       if (storedTheme) {
@@ -29,7 +31,7 @@ const App: React.FC = () => {
   });
 
   useEffect(() => {
-    // Efek ini menyinkronkan status tema dengan DOM dan localStorage.
+    // This effect syncs the theme state with the DOM and localStorage.
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
@@ -49,9 +51,11 @@ const App: React.FC = () => {
       if (match && match[1]) {
         setImageId(match[1]);
         setView('image');
+      } else if (path === '/legal-agreement') {
+        setView('legal');
       } else {
         setView('upload');
-        // Jika kita kembali ke '/', reset status uploader
+        // If we navigate back to '/', reset the uploader state
         if (path === '/') {
            handleResetState();
         }
@@ -59,7 +63,7 @@ const App: React.FC = () => {
     };
     
     window.addEventListener('popstate', handleUrlChange);
-    handleUrlChange(); // Pemeriksaan awal
+    handleUrlChange(); // Initial check
 
     return () => {
         window.removeEventListener('popstate', handleUrlChange);
@@ -86,7 +90,7 @@ const App: React.FC = () => {
       const id = responseUrl.split('/').pop();
 
       if (!id) {
-        throw new Error('Tidak bisa mendapatkan ID gambar dari respons API.');
+        throw new Error('Could not get image ID from API response.');
       }
 
       const newShareUrl = `${window.location.origin}/${id}`;
@@ -98,7 +102,7 @@ const App: React.FC = () => {
 
       window.history.pushState({}, '', `/${id}`);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Terjadi kesalahan yang tidak diketahui saat mengunggah.');
+      setError(err instanceof Error ? err.message : 'An unknown error occurred during upload.');
     } finally {
       setIsLoading(false);
     }
@@ -121,26 +125,30 @@ const App: React.FC = () => {
     setView('upload');
   };
 
+  if (view === 'legal') {
+    return <LegalPage theme={theme} toggleTheme={toggleTheme} />;
+  }
+
   if (view === 'image' && imageId) {
     return <ImageViewer imageId={imageId} />;
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900 font-sans text-slate-800 dark:text-slate-300">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-slate-900 font-sans text-slate-800 dark:text-slate-300">
       <Header theme={theme} toggleTheme={toggleTheme} />
-      <main className="container mx-auto px-4 pt-28 pb-12 sm:pt-32 sm:pb-16 md:pt-40 md:pb-24 flex flex-col items-center">
+      <main className="container mx-auto px-4 pt-28 pb-12 sm:pt-32 sm:pb-16 md:pt-40 md:pb-24 flex flex-col items-center flex-grow">
         {!file || !filePreview ? (
           <>
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white text-center">Share Images Online</h1>
-            <p className="mt-4 text-lg text-slate-600 dark:text-slate-400 text-center">Share your images instantly using links</p>
+            <p className="mt-4 text-lg text-slate-600 dark:text-slate-400 text-center">Instantly share your images with a link</p>
             <FileUploader onFileSelect={handleFileSelect} isLoading={isLoading} />
             <p className="mt-8 text-sm text-slate-500 dark:text-slate-400">
               Maximum file size: 100MB
             </p>
-             {error && <p className="mt-4 text-sm text-red-500">{error}</p>}
             <p className="mt-12 text-xs text-slate-400 dark:text-slate-500 text-center max-w-md">
-              By sharing your files or using our services, you agree to our Terms of Service and Privacy Policy.
+              By using this service, you agree to our <a href="/legal-agreement" className="underline hover:text-slate-600 dark:hover:text-slate-300">Terms &amp; Privacy Policy</a>.
             </p>
+             {error && <p className="mt-4 text-sm text-red-500">{error}</p>}
           </>
         ) : (
           <UploadedFileView
@@ -151,6 +159,7 @@ const App: React.FC = () => {
           />
         )}
       </main>
+      <Footer />
     </div>
   );
 };
