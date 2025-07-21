@@ -20,6 +20,9 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
             <a href="/legal-agreement" className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors hidden sm:block">
                 Terms & Privacy
             </a>
+            <a href="/api" className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors hidden sm:block">
+                API
+            </a>
           </div>
           
           <div className="flex items-center space-x-2 sm:space-x-4">
